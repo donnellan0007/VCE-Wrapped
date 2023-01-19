@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up for VCE Wrapped</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" method="POST" action="{% url 'core:register' %}">
+        {% csrf_token %}
+<label for="username">Username</label>
+        <input type="text" name="username" id="username" required>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+        <label for="password1">Password</label>
+        <input type="password" name="password1" id="password1" required>
+        <label for="password2">Confirm Password</label>
+        <input type="password" name="password2" id="password2" required>
+        <input type="submit" value="Sign up">
+    </form>
+</body>
+</html>

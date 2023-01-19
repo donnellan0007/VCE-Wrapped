@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
 # auth user
-AUTH_USER_MODEL = 'core.Profile'
+# AUTH_USER_MODEL = 'core.Profile'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
