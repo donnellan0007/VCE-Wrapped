@@ -18,9 +18,11 @@ class SubjectWidget(s2forms.ModelSelect2MultipleWidget):
         "name__icontains",
     ]
 
+from django.db.models import Q
+
 class AssessmentWidget(s2forms.ModelSelect2Widget):
     search_fields = [
-        "subject.name__icontains"
+        "taker.subject.name__icontains",
     ]
 
 class UserRegisterForm(UserCreationForm):
@@ -62,9 +64,13 @@ class ProfileUpdateForm(forms.ModelForm):
         }
 
 class AssessmentForm(forms.ModelForm):
+
     class Meta:
         model = Assessment
         fields = ['subject', 'correct', 'total_questions', 'study_session', 'start_time', 'end_time', 'self_marked']
         widgets = {
-            "subject": AssessmentWidget,
+            # "subject": AssessmentWidget,
         }
+    def __init__(self, taker, *args, **kwargs):
+        super(AssessmentForm, self).__init__(*args, **kwargs)
+        self.fields['subject'].queryset = Assessment.objects.filter(taker=taker)

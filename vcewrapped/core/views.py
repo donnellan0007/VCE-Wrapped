@@ -44,11 +44,13 @@ def update_profile(request):
     return render(request, 'core/profile-update.html', {'form': form})
 
 def new_assessment(request):
+    print(request.user.profile)
     if request.method == 'POST':
-        form = AssessmentForm(request.POST)
+        form = AssessmentForm(request.POST, taker=request.user.profile)
         if form.is_valid():
+            form.taker = request.user.profile
             form.save()
             return redirect('core:index')
     else:
-        form = AssessmentForm()
+        form = AssessmentForm(taker=request.user.profile)
     return render(request, 'core/new-assessment.html', {'form': form})
