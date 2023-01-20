@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+:root {
+  --primary: #0099CC;
+  --sidebar-blue: #DEF2F8;
+  --primary-font: 'Anek Telugu', sans-serif; }
+
+body {
+  font-family: var(--primary-font); }
+
+.select2-dropdown {
+  width: 10rem !important; }
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); }
+
+.countdown-clock {
+  grid-column: 10 / 13;
+  background: #DEF2F8;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  text-align: center; }
+  .countdown-clock h3 {
+    font-size: 1.25rem;
+    font-weight: 200; }
+  .countdown-clock h2 {
+    font-size: 2rem; }
+
+.logo-container img {
+  width: 12rem; }
+
+.sidebar {
+  grid-column: 1 / 2;
+  background: var(--sidebar-blue);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem; }
+  .sidebar .links .logo-cont {
+    margin-bottom: 2rem; }
+    .sidebar .links .logo-cont img {
+      width: 12rem; }
+  .sidebar .links .link-group {
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    display: flex;
+    flex-direction: column; }
+    .sidebar .links .link-group a {
+      text-decoration: none;
+      color: black;
+      font-size: 18px; }
+
+.application-window {
+  grid-column: 2 / 13;
+  display: grid; }
+  .application-window .empty-window {
+    place-self: center;
+    text-align: center;
+    color: var(--primary); }
+
+.inner-container {
+  margin-top: 3rem;
+  grid-column: 2 / 7; }
+
+.page-heading {
+  font-size: 36px;
+  font-weight: 400; }
+
+.assessment-form {
+  padding: 2rem; }
+
+.sign-up-form {
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; }
+  .sign-up-form input {
+    border-bottom: var(--primary) 1px solid !important;
+    border: none;
+    outline: none;
+    font-size: 32px;
+    font-family: var(--primary-font); }
+  .sign-up-form .select2-container .select2-selection--single .select2-selection__rendered {
+    overflow: visible !important; }
+  .sign-up-form .select2-container--default .select2-selection--single {
+    border: none; }
+  .sign-up-form .select2-selection__choice {
+    font-size: 16px !important; }
+  .sign-up-form .select2-selection:not(.select2-selection--multiple) {
+    border-bottom: var(--primary) 1px solid !important;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    outline: none;
+    font-size: 32px;
+    font-family: var(--primary-font); }
+
+.label-input {
+  display: flex;
+  flex-direction: column; }

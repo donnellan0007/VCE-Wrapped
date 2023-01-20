@@ -11,4 +11,6 @@ def create_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
+    instance.profile.name = f"{User.first_name} {User.last_name}"
+    instance.profile.email = User.email
     instance.profile.save()

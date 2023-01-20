@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Anek Telugu', sans-serif;
+}
+.select2-dropdown { width: 10rem !important;}
+
+.select2-container {}
+
+form {
+  width: 100% !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+}

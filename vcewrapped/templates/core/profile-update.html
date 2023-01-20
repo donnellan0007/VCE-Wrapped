@@ -1,0 +1,56 @@
+{% extends 'core/base.html'%}
+{% load static %}
+{% block content %}
+    <div class="container">
+    <div class="inner-container">
+        <div class="logo-container">
+            <img src="{% static 'images/logos/logo.svg' %}" alt="">
+        </div>
+    <h1 class="page-heading">A bit about your VCE</h1>
+    <form class="sign-up-form" method="POST">
+        {% csrf_token %}
+        <div class="label-input">
+            <label for="school">What school do you go to?</label>
+            {{ form.school }}
+        </div>
+{#        <input type="text" name="school" id="school" required>#}
+        <div class="label-input">
+            <label for="graduation_year">What year do you graduate?</label>
+            <input type="number" name="graduation_year" id="graduation_year" required>
+        </div>
+        <div class="label-input">
+            <label for="subjects"><b>3/4 ONLY</b> What subjects are you doing?</label>
+    {#        <input type="text" name="subjects" id="subjects" required>#}
+            {{ form.subjects }}
+        </div>
+        <div class="label-input">
+            <label for="atar_goal">And what's your goal ATAR?</label>
+            <input type="number" name="atar_goal" id="atar_goal" required>
+        </div>
+        <div class="label-input">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" required>
+        </div>
+        <input type="submit" value="Finish">
+
+    </form>
+    </div>
+    <div class="countdown-clock">
+        <h3>VCE Results Release in</h3>
+        <h2 id="demo"></h2>
+    </div>
+    </div>
+
+  <script>
+
+</script>
+
+
+
+    <style>
+
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{ form.media.js }}
+
+{% endblock content %}

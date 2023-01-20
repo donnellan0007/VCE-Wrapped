@@ -1,6 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
+
 {% block content %}
+
  <div class="container">
         <div class="sidebar">
             <div class="links">
@@ -25,10 +27,15 @@
             </div>
         </div>
  <div class="application-window">
-     <div class="empty-window">
-         <h1>+</h1>
-         <p>Select Action</p>
+     <div class="assessment-form">
+         <h1 class="page-heading">New Assessment</h1>
+         <div class="form-assessment">
+             <form method="post" action="">
+                 {{ form.subject }}
+             </form>
+         </div>
      </div>
  </div>
  </div>
-{% endblock content %}
+
+{% endblock %}
