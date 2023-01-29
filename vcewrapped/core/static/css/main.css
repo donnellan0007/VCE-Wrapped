@@ -6,13 +6,17 @@
 :root {
   --primary: #0099CC;
   --sidebar-blue: #DEF2F8;
-  --primary-font: 'Anek Telugu', sans-serif; }
+  --primary-font: 'Anek Telugu', sans-serif;
+  --border: #C8C8C8; }
 
 body {
   font-family: var(--primary-font); }
 
 .select2-dropdown, .select2 {
   width: 10rem !important; }
+
+.select2-container {
+  width: 100% !important; }
 
 .container {
   display: grid;
@@ -58,12 +62,16 @@ body {
       font-size: 18px; }
 
 .application-window {
+  max-width: 80rem;
   grid-column: 2 / 13;
-  display: grid; }
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); }
   .application-window .empty-window {
     place-self: center;
     text-align: center;
     color: var(--primary); }
+  .application-window .assessment-form {
+    grid-column: 1 / 7; }
 
 .inner-container {
   margin-top: 3rem;
@@ -105,3 +113,51 @@ body {
 .label-input {
   display: flex;
   flex-direction: column; }
+
+.checkbox-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer !important; }
+  .checkbox-input label {
+    cursor: pointer; }
+  .checkbox-input input[type="checkbox"] {
+    width: 20px;
+    accent-color: var(--primary); }
+
+.btn {
+  cursor: pointer;
+  font-family: var(--primary-font);
+  padding: 5px 25px;
+  font-size: 16px;
+  outline: none;
+  font-weight: 200; }
+  .btn__primary {
+    color: white;
+    background: var(--primary);
+    border: none; }
+
+#end-btn {
+  display: none; }
+
+.mark-container {
+  display: flex;
+  justify-content: space-between; }
+  .mark-container .answer input, .mark-container .divider {
+    all: unset;
+    width: 2rem;
+    border: 1px var(--border) solid !important;
+    text-overflow: ellipsis;
+    padding: 2.5px;
+    font-size: 16px; }
+  .mark-container .answer-container {
+    display: flex; }
+  .mark-container .divider {
+    user-select: none;
+    text-align: center;
+    width: 1rem !important;
+    background: var(--border); }
+  .mark-container input[type=number]::-webkit-inner-spin-button,
+  .mark-container input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; }

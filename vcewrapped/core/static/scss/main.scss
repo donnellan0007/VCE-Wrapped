@@ -8,6 +8,7 @@
   --primary: #0099CC;
   --sidebar-blue: #DEF2F8;
   --primary-font: 'Anek Telugu', sans-serif;
+  --border: #C8C8C8;
 }
 
 body {
@@ -15,7 +16,7 @@ body {
 }
 .select2-dropdown, .select2 { width: 10rem !important;}
 
-.select2-container {}
+.select2-container { width: 100% !important;}
 
 .container {
   display: grid;
@@ -73,12 +74,17 @@ body {
 }
 
 .application-window {
+  max-width: 80rem;
   grid-column: 2 / 13;
   display: grid;
+  grid-template-columns: repeat(12, 1fr);
   .empty-window {
     place-self: center;
     text-align: center;
     color: var(--primary)
+  }
+  .assessment-form {
+    grid-column: 1 / 7;
   }
 }
 
@@ -131,4 +137,70 @@ body {
 .label-input {
   display: flex;
   flex-direction: column;
+}
+
+.checkbox-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  label {
+    cursor: pointer;
+  }
+  cursor: pointer !important;
+  input[type="checkbox"] {
+    width: 20px;
+    accent-color: var(--primary);
+  }
+}
+
+.button-container {
+
+}
+
+.btn {
+  cursor: pointer;
+  font-family: var(--primary-font);
+  padding: 5px 25px;
+  font-size: 16px;
+  outline: none;
+  font-weight: 200;
+  &__primary {
+    color: white;
+    background: var(--primary);
+    border: none;
+  }
+}
+
+#start-btn {
+
+}
+#end-btn {
+  display: none;
+}
+
+.mark-container {
+  display: flex;
+justify-content: space-between;
+  .answer input, .divider {
+    all: unset;
+    width: 2rem;
+    border: 1px var(--border) solid !important;
+    text-overflow: ellipsis;
+    padding: 2.5px;
+    font-size: 16px;
+  }
+  .answer-container {
+    display: flex;
+  }
+  .divider {
+    user-select: none;
+    text-align: center;
+    width: 1rem !important;
+    background: var(--border);
+  }
+  input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 }

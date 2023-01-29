@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from core.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, AssessmentForm
-from core.models import Profile
+from core.models import Profile, Assessment, Subject
 # Create your views here.
 
 def index(request):
@@ -45,12 +45,13 @@ def update_profile(request):
 
 def new_assessment(request):
     print(request.user.profile)
+    classes = Subject.objects.filter(profile=request.user.profile)
     if request.method == 'POST':
-        form = AssessmentForm(request.POST, taker=request.user.profile)
+        form = AssessmentForm(request.POST, profile=request.user.profile)
         if form.is_valid():
             form.taker = request.user.profile
             form.save()
             return redirect('core:index')
     else:
-        form = AssessmentForm(taker=request.user.profile)
-    return render(request, 'core/new-assessment.html', {'form': form})
+        form = AssessmentForm(profile=request.user.profile)
+    return render(request, 'core/new-assessment.html', {'form': form, 'classes': classes,})
