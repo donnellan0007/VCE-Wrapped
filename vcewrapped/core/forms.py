@@ -2,10 +2,32 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import TextInput, EmailInput, PasswordInput
+from django_select2 import forms as s2forms
 
-from .models import Profile, Subject, Discipline, School
+from .models import Profile, Subject, Discipline, School, Assessment
 from django.core.mail import send_mail
 from django.conf import settings
+
+class SchoolWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+        "name__icontains",
+    ]
+
+class SubjectWidget(s2forms.ModelSelect2MultipleWidget):
+    search_fields = [
+        "name__icontains",
+    ]
+class SingleSubjectWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+        "name__icontains",
+    ]
+
+from django.db.models import Q
+
+class AssessmentWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+        "taker.subject.name__icontains",
+    ]
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -13,8 +35,10 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
         widgets = {
+            'first_name': TextInput(attrs={'placeholder': 'First Name'}),
+            'last_name': TextInput(attrs={'placeholder': 'Last Name'}),
             'username': TextInput(attrs={'placeholder': 'Username'}),
             'email': EmailInput(attrs={'placeholder': 'Email'}),
             'password1': PasswordInput(attrs={'placeholder': 'Password'}),
@@ -37,5 +61,20 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'email', 'phone', 'address', 'school', 'subjects', 'suburb', 'zip_code', 'image']
+        fields = ['phone', 'address', 'school', 'subjects', 'atar_goal', 'graduation_year']
+        widgets = {
+            "school": SchoolWidget,
+            "subjects": SubjectWidget,
+        }
 
+class AssessmentForm(forms.ModelForm):
+
+    class Meta:
+        model = Assessment
+        fields = ['subject', 'correct', 'total_questions', 'study_session', 'start_time', 'end_time', 'self_marked']
+        widgets = {
+            "subject": SingleSubjectWidget,
+        }
+    def __init__(self, profile, *args, **kwargs):
+        super(AssessmentForm, self).__init__(*args, **kwargs)
+        self.fields['subject'].queryset = Subject.objects.filter(profile=profile)

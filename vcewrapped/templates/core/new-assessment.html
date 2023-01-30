@@ -1,0 +1,85 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+ <div class="container">
+        <div class="sidebar">
+            <div class="links">
+                <div class="logo-cont">
+                    <img src="{% static 'images/logos/logo.svg' %}" alt="">
+                </div>
+                <div class="link-group">
+                    <a href="#">New practise exam</a>
+                    <a href="#">New practise SAC</a>
+                </div>
+                <div class="link-group">
+                    <a href="#">New exam</a>
+                    <a href="#">New SAC</a>
+                </div>
+                <div class="link-group">
+                    <a href="#">Settings</a>
+                </div>
+            </div>
+            <div class="timer">
+                <p>VCE Results Release in</p>
+                <h2 id="demo"></h2>
+            </div>
+        </div>
+ <div class="application-window">
+     <div class="assessment-form">
+         <h1 class="page-heading">New Assessment</h1>
+         <div class="form-assessment">
+             <form class="sign-up-form" method="post" action="">
+                 <div class="label-input">
+                    <label for="school">What subject is this for?</label>
+                    {{ form.subject }}
+                 </div>
+
+                 <div class="label-input checkbox-input">
+                    <label for="self_marked">Did you self mark this?</label>
+                    <input type="checkbox" name="self_marked" id="self_marked" required>
+                 </div>
+                 <div class="mark-container">
+                     <div class="label-container">
+                     <p>What score did you get?</p>
+                     </div>
+                     <div class="answer-container">
+                    <div class="total-correct answer">
+                        <input type="number">
+                    </div>
+                     <div class="answer divider">
+                        /
+                    </div>
+                     <div class="total-total answer">
+                         <input type="number">
+                     </div>
+                     </div>
+                 </div>
+                <div class="hidden-inputs">
+                    <input type="hidden" name="start_time" id="start_time" value="">
+                    <input type="hidden" name="end_time" id="end_time" value="">
+                </div>
+             </form>
+             <div class="button-container">
+                 <button id="start-btn" class="btn btn__primary">Start timer</button>
+                 <button id="end-btn" class="btn btn__primary">Pause timer</button>
+             </div>
+             <div class="stopwatch">
+                 <h1>
+  <span id="hour">00</span>:
+  <span id="min">00</span>:
+  <span id="sec">00</span>
+  <span id="milisec">00</span>
+{#  <span id="milisec">00</span>#}
+</h1>
+             </div>
+         </div>
+     </div>
+ </div>
+ </div>
+
+    <script>
+
+    </script>
+
+{% endblock %}

@@ -1,21 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign up for VCE Wrapped</title>
-</head>
-<body>
-    <form enctype="multipart/form-data" method="POST" action="{% url 'core:register' %}">
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+    <div class="inner-container">
+        <div class="logo-container">
+            <img src="{% static 'images/logos/logo.svg' %}" alt="">
+        </div>
+        <h1 class="page-heading">Lets get to know you</h1>
+    <form class="sign-up-form" enctype="multipart/form-data" method="POST" action="{% url 'core:register' %}">
         {% csrf_token %}
-<label for="username">Username</label>
-        <input type="text" name="username" id="username" required>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required>
-        <label for="password1">Password</label>
-        <input type="password" name="password1" id="password1" required>
-        <label for="password2">Confirm Password</label>
-        <input type="password" name="password2" id="password2" required>
+        <div class="label-input">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name" required>
+        </div>
+        <div class="label-input">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name" required>
+        </div>
+        <div class="label-input">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="label-input">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div class="label-input">
+            <label for="password1">Password</label>
+            <input type="password" name="password1" id="password1" required>
+        </div>
+        <div class="label-input">
+            <label for="password2">Confirm Password</label>
+            <input type="password" name="password2" id="password2" required>
+        </div>
         <input type="submit" value="Sign up">
     </form>
-</body>
-</html>
+    </div>
+    <div class="countdown-clock">
+        <h3>VCE Results Release in</h3>
+        <h2 id="demo"></h2>
+    </div>
+    </div>
+{% endblock content %}
