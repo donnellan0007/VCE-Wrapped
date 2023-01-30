@@ -61,6 +61,12 @@ body {
       color: black;
       font-size: 18px; }
 
+.application-window:has(.empty-window) {
+  width: 10vw;
+  place-self: center !important;
+  text-align: center !important;
+  color: var(--primary) !important; }
+
 .application-window {
   max-width: 80rem;
   grid-column: 2 / 13;
@@ -83,6 +89,28 @@ body {
 
 .assessment-form {
   padding: 2rem; }
+
+@media screen and (max-width: 950px) {
+  .assessment-form {
+    grid-column: span 1 / 1 !important; } }
+
+@media screen and (max-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column; }
+    .container .sidebar {
+      height: unset; }
+      .container .sidebar .links {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        overflow-y: auto; }
+        .container .sidebar .links .link-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+    .container .assessment-form {
+      grid-column: span 1 / 1; } }
 
 .sign-up-form {
   width: 100% !important;

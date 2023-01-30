@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-bn^mr1s4ds8pm8-cj4*+30g6g329$r#&(tgxci&b0r*#qp)g8@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://d4d3-182-239-196-130.au.ngrok.io']
 
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'import_export',
     'django_select2',
+    'django_unixdatetimefield',
 ]
 
 MIDDLEWARE = [

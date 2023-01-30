@@ -33,11 +33,16 @@ var x = setInterval(function() {
     var buttonContainer = document.getElementsByClassName('button-container')[0]
     var submitButton = document.createElement('button')
     submitButton.setAttribute("id", "submit-button")
+    form = document.getElementById("form-assessment")
     submitButton.classList.add("btn")
     submitButton.classList.add("btn__primary")
     submitButton.innerHTML = "Submit"
+    start_time_input = document.getElementById("start_time")
+    end_time_input = document.getElementById("end_time")
     startButton.addEventListener("click", (e) => {
         start()
+        // get current time
+        start_time_input.value = Math.floor(Date.now() / 1000)
         startButton.style.display = "none";
         endButton.style.display = "inline";
         buttonContainer.appendChild(submitButton)
@@ -48,6 +53,10 @@ var x = setInterval(function() {
         endButton.style.display = "none";
         startButton.style.display = "inline";
         // submitButton.style.display = "none";
+    })
+    submitButton.addEventListener("click", (e) => {
+        end_time_input.value = Math.floor(Date.now() / 1000)
+        form.submit()
     })
 
     var x;

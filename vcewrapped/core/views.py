@@ -47,11 +47,15 @@ def new_assessment(request):
     print(request.user.profile)
     classes = Subject.objects.filter(profile=request.user.profile)
     if request.method == 'POST':
-        form = AssessmentForm(request.POST, profile=request.user.profile)
+        form = AssessmentForm(request.user.profile, request.POST)
+        print(form.errors)
         if form.is_valid():
-            form.taker = request.user.profile
+            taker_ = form.save(commit=False)
+            taker_.taker = request.user.profile
+            taker_.save()
             form.save()
             return redirect('core:index')
     else:
+        print("invalid form")
         form = AssessmentForm(profile=request.user.profile)
     return render(request, 'core/new-assessment.html', {'form': form, 'classes': classes,})

@@ -73,6 +73,13 @@ body {
   }
 }
 
+.application-window:has(.empty-window) {
+  width: 10vw;
+place-self: center !important;
+    text-align: center !important;
+    color: var(--primary) !important;
+}
+
 .application-window {
   max-width: 80rem;
   grid-column: 2 / 13;
@@ -81,7 +88,7 @@ body {
   .empty-window {
     place-self: center;
     text-align: center;
-    color: var(--primary)
+    color: var(--primary);
   }
   .assessment-form {
     grid-column: 1 / 7;
@@ -100,6 +107,37 @@ body {
 
 .assessment-form {
   padding: 2rem;
+}
+
+@media screen and (max-width: 950px) {
+  .assessment-form {
+      grid-column: span 1 / 1 !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    .sidebar {
+      height: unset;
+      .links {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        overflow-y: auto;
+        .link-group {
+
+        display: flex;
+        flex-direction: column;
+              align-items: center;
+        }
+      }
+    }
+    .assessment-form {
+      grid-column: span 1 / 1;
+    }
+  }
 }
 
 .sign-up-form {

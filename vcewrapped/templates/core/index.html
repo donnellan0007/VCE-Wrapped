@@ -5,17 +5,18 @@
         <div class="sidebar">
             <div class="links">
                 <div class="logo-cont">
-                    <img src="{% static 'images/logos/logo.svg' %}" alt="">
+                    <a href="{% url 'core:index' %}"><img src="{% static 'images/logos/logo.svg' %}" alt=""></a>
                 </div>
                 <div class="link-group">
-                    <a href="#">New practise exam</a>
-                    <a href="#">New practise SAC</a>
+                    <a href="{% url 'core:new-assessment' %}">New assessment/study session</a>
+{#                    <a href="#">New practise SAC</a>#}
                 </div>
+{#                <div class="link-group">#}
+{#                    <a href="#">New exam</a>#}
+{#                    <a href="#">New SAC</a>#}
+{#                </div>#}
                 <div class="link-group">
-                    <a href="#">New exam</a>
-                    <a href="#">New SAC</a>
-                </div>
-                <div class="link-group">
+                    <a href="#">Profile</a>
                     <a href="#">Settings</a>
                 </div>
             </div>
@@ -31,4 +32,19 @@
      </div>
  </div>
  </div>
+    <style>
+    @media screen and (max-width: 600px) {
+        .application-window {
+            display: none;
+        }
+        .sidebar {
+            height: 100vh !important;
+        }
+        .logo-cont {display: block !important;}
+        .link-group {
+            margin: 12px 0 0 0 !important;
+            align-items: flex-start !important;
+        }
+    }
+    </style>
 {% endblock content %}

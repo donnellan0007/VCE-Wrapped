@@ -2,21 +2,27 @@
 {% load static %}
 
 {% block content %}
+    <script>
+    $( function() {
+    $( document ).tooltip();
+  } );
+    </script>
  <div class="container">
         <div class="sidebar">
             <div class="links">
                 <div class="logo-cont">
-                    <img src="{% static 'images/logos/logo.svg' %}" alt="">
+                    <a href="{% url 'core:index' %}"><img src="{% static 'images/logos/logo.svg' %}" alt=""></a>
                 </div>
                 <div class="link-group">
-                    <a href="#">New practise exam</a>
-                    <a href="#">New practise SAC</a>
+                    <a href="{% url 'core:new-assessment' %}">New assessment/study session</a>
+{#                    <a href="#">New practise SAC</a>#}
                 </div>
+{#                <div class="link-group">#}
+{#                    <a href="#">New exam</a>#}
+{#                    <a href="#">New SAC</a>#}
+{#                </div>#}
                 <div class="link-group">
-                    <a href="#">New exam</a>
-                    <a href="#">New SAC</a>
-                </div>
-                <div class="link-group">
+                    <a href="#">Profile</a>
                     <a href="#">Settings</a>
                 </div>
             </div>
@@ -29,12 +35,18 @@
      <div class="assessment-form">
          <h1 class="page-heading">New Assessment</h1>
          <div class="form-assessment">
-             <form class="sign-up-form" method="post" action="">
+             <form id="form-assessment" class="sign-up-form" enctype="multipart/form-data" method="POST" action="{% url 'core:new-assessment' %}">
+                 {% csrf_token %}
                  <div class="label-input">
                     <label for="school">What subject is this for?</label>
                     {{ form.subject }}
                  </div>
+                <div class="label-input checkbox-input">
+                        <label for="study_session">Is this a study session?</label>
+                    <input type="checkbox" name="study_session" id="study_session" required title="We ask for your age only for statistical purposes.">
 
+                 </div>
+                 <small style="font-size: 10px"><mark>If not selected, this will be treated as a practise SAC. Practise exams will be released later in term 2.</mark></small>
                  <div class="label-input checkbox-input">
                     <label for="self_marked">Did you self mark this?</label>
                     <input type="checkbox" name="self_marked" id="self_marked" required>
@@ -45,13 +57,13 @@
                      </div>
                      <div class="answer-container">
                     <div class="total-correct answer">
-                        <input type="number">
+                        <input type="number" name="correct" id="correct">
                     </div>
                      <div class="answer divider">
                         /
                     </div>
                      <div class="total-total answer">
-                         <input type="number">
+                         <input type="number" name="total_questions" id="total_questions">
                      </div>
                      </div>
                  </div>
@@ -80,6 +92,21 @@
 
     <script>
 
-    </script>
+// Getter
+var content = $( ".selector" ).tooltip( "option", "content" );
 
+// Setter
+$( ".selector" ).tooltip( "option", "content", "Awesome title!" );
+    </script>
+<style>
+    @media screen and (max-width: 600px) {
+        .logo-cont {
+            display: block !important;
+        }
+        .links .link-group {
+            display: none !important;
+        }
+        .timer { display: none; }
+    }
+    </style>
 {% endblock %}
