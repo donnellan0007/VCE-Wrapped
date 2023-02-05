@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'ebhealthcheck.apps.EBHealthCheckConfig',
     'import_export',
     'django_select2',
     'django_unixdatetimefield',
